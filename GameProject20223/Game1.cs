@@ -6,6 +6,7 @@ namespace GameProject20223
 {
     public class Game1 : Game
     {
+        //variablen gegenereert door Monogame
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
