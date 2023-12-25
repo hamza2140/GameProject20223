@@ -8,5 +8,13 @@ namespace GameProject20223.Animations
 {
     internal class Animation
     {
+        public AnimationFrame CurrFrame { get; set; }
+        private List<AnimationFrame> frames;
+        private int counter;
+
+        public Animation()
+        {
+            frames = new List<AnimationFrame>();
+        }
     }
 }
