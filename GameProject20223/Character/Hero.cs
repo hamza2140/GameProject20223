@@ -24,5 +24,9 @@ namespace GameProject20223.Character
 
         Animation runAnimation, attackAnimation, staticAnimation, jumpAnimation, deathAnimation;
         AnimationManager animationManager;
+
+        public static int score { get; set; }
+        public bool jump { get; set; }
+        public KeyboardReader inputReader { get; set; }
     }
 }
