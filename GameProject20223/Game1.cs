@@ -9,6 +9,9 @@ namespace GameProject20223
         //variablen gegenereert door Monogame
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        //variablen van mij voor de gamestate
+        private GameState CurrentGameState;
+        private GameState NextGameState;
 
         public Game1()
         {
@@ -29,7 +32,7 @@ namespace GameProject20223
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            
             // TODO: use this.Content to load your game content here
         }
 
@@ -37,6 +40,14 @@ namespace GameProject20223
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            if (NextGameState != null)
+            {
+                CurrentGameState = NextGameState;
+                NextGameState = null;
+            }
+
+            CurrentGameState.Update(gameTime);
 
             // TODO: Add your update logic here
 

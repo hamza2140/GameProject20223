@@ -48,4 +48,5 @@ namespace GameProject20223.Animations
                 counter = 0;
             }
         }
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using GameProject20223.Animations;
+using GameProject20223.Classes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
