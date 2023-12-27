@@ -1,6 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameProject20223.Classes.GameStates;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Data.Common;
 
 namespace GameProject20223
 {
@@ -41,6 +43,7 @@ namespace GameProject20223
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            //Updating the current gamestate
             if (NextGameState != null)
             {
                 CurrentGameState = NextGameState;
@@ -49,15 +52,21 @@ namespace GameProject20223
 
             CurrentGameState.Update(gameTime);
 
-            // TODO: Add your update logic here
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
+            //clear
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            _spriteBatch.Begin();
 
+            // Teken huidige game state
+            CurrentGameState.Draw(gameTime, _spriteBatch);
+
+            // End
+            _spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);

@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GameProject20223.Interfaces;
+using IUpdateable = GameProject20223.Interfaces.IUpdateable;
+using Microsoft.Xna.Framework.Input;
 
 namespace GameProject20223.Classes.Button
 {
@@ -16,6 +19,7 @@ namespace GameProject20223.Classes.Button
         protected ContentManager _content;
 
         internal Texture2D _texture;
+
 
         // Constructor 
         public cButton(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, int X, int Y)
@@ -58,8 +62,37 @@ namespace GameProject20223.Classes.Button
         // Bool of er geklikt is op knop
         public bool Clicked { get; private set; }
 
+        public bool Enabled => throw new NotImplementedException();
+
+        public int UpdateOrder => throw new NotImplementedException();
+
         // Update functie
-        
+        public void Update(GameTime gameTime)
+        {
+            // Kleur veranderen als muis over knop gaat
+            var mouseState = Mouse.GetState();
+            var mousePosition = new Point(mouseState.X, mouseState.Y);
+
+            if (rectangle.Contains(mousePosition))
+            {
+                color = Color.Gray;
+
+                // Als er geklikt word op knop
+                if (mouseState.LeftButton == ButtonState.Pressed)
+                    Clicked = true;
+                else
+                    Clicked = false;
+            }
+            else
+            {
+                color = Color.White;
+            }
+
+            if (Clicked)
+            {
+                DoBtnFunction();
+            }
+        }
 
         internal abstract void DoBtnFunction();
 
