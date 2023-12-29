@@ -1,5 +1,6 @@
 ﻿using GameProject20223.Animations;
 using GameProject20223.Classes;
+using GameProject20223.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -29,5 +30,29 @@ namespace GameProject20223.Character
         public static int score { get; set; }
         public bool jump { get; set; }
         public KeyboardReader inputReader { get; set; }
+        public Hero(Texture2D texture, IInputReader inputReader)
+        {
+            heroTexture = texture;
+            this.inputReader = (KeyboardReader)inputReader;
+
+            speed = new Vector2(8, 5);
+            position = new Vector2(50, 400);
+            scale = 1;
+            width = 64;
+            height = 64;
+            hasJumped = true;
+
+            
+
+            // Huidige animatie intialiseren.
+            animationManager = new AnimationManager();
+            SetCurrentAnimation(staticAnimation);
+
+        }
+
+        void SetCurrentAnimation(Animation animation)
+        {
+            animationManager.CurrentAnimation = animation;
+        }
     }
 }
