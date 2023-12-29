@@ -14,6 +14,10 @@ namespace GameProject20223
         //variablen van mij voor de gamestate
         private GameState CurrentGameState;
         private GameState NextGameState;
+        public void ChangeState(GameState newState)
+        {
+            NextGameState = newState;
+        }
 
         public Game1()
         {
