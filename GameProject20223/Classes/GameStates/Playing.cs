@@ -1,5 +1,6 @@
 ﻿using GameProject20223.Character;
 using GameProject20223.Classes.Levels;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -31,12 +32,14 @@ namespace GameProject20223.Classes.GameStates
 
             KBReader = new KeyboardReader();
             hero = new Hero(_heroTexture, KBReader);
-            Tiles.Content = _content;
-
-            level1 = new Level1(graphicsDevice, _content);
-            level2 = new Level2(graphicsDevice, _content);
+            
 
             currentLevel = level1;
+        }
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            currentLevel.Draw(spriteBatch);
+            hero.Draw(spriteBatch);
         }
     }
 }

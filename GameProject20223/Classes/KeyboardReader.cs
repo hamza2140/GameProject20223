@@ -68,6 +68,17 @@ namespace GameProject20223.Classes
             return false;
         }
 
-        
+        public bool ReadAttack()
+        {
+            KeyboardState state = Keyboard.GetState();
+            bool attack = false;
+
+            if (state.IsKeyDown(Keys.Space))
+            {
+                attack = true;
+            }
+
+            return attack;
+        }
     }
 }
