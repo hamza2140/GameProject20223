@@ -1,6 +1,7 @@
 ﻿using GameProject20223.Animations;
 using GameProject20223.Classes;
 using GameProject20223.Classes.Character;
+using GameProject20223.Classes.Interfaces;
 using GameProject20223.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,12 +10,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IDrawable = GameProject20223.Classes.Interfaces.IDrawable;
 using IUpdateable = GameProject20223.Interfaces.IUpdateable;
 
 namespace GameProject20223.Character
 {
     // Bron jump + gravity: Oyyou. (2012, 8 februari). XNA Tutorial 23 - Jumping and Gravity. YouTube. https://www.youtube.com/watch?v=ZLxIShw-7ac
-    class Hero : IDrawable, IUpdateable
+    class Hero : IUpdateable,IDrawable
     {
         // Variabelen initialiseren
         bool hasJumped, reachedTop;
@@ -29,9 +31,17 @@ namespace GameProject20223.Character
         Animation runAnimation, attackAnimation, staticAnimation, jumpAnimation, deathAnimation;
         AnimationManager animationManager;
 
+        public event EventHandler<EventArgs> DrawOrderChanged;
+        public event EventHandler<EventArgs> VisibleChanged;
+
         public static int score { get; set; }
         public bool jump { get; set; }
         public KeyboardReader inputReader { get; set; }
+
+        public int DrawOrder => throw new NotImplementedException();
+
+        public bool Visible => throw new NotImplementedException();
+
         public Hero(Texture2D texture, IInputReader inputReader)
         {
             heroTexture = texture;
@@ -57,6 +67,7 @@ namespace GameProject20223.Character
         {
             animationManager.CurrentAnimation = animation;
         }
+
         public void Update(GameTime gameTime)
         {
             // Juiste animatie plaatsen adhv van inputReader info
@@ -101,6 +112,7 @@ namespace GameProject20223.Character
             spriteBatch.Draw(heroTexture, position, animationManager.CurrentAnimation.CurrFrame.srcRectangle,
                 Color.White, rotation, new Vector2(0, 0), scale, se, 0f);
         }
+        
 
         private void Move()
         {
@@ -162,7 +174,34 @@ namespace GameProject20223.Character
             }
         }
 
-        
+        public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
+        {
+            rectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
+
+            if (rectangle.TouchTopOf(newRectangle))
+            {
+                reachedTop = false;
+                hasJumped = false;
+                position.Y = newRectangle.Y - height;
+                speed.Y = 0f;
+            }
+
+            if (rectangle.TouchLeftOf(newRectangle))
+            {
+                position.X = newRectangle.X - rectangle.Width + 20;
+            }
+
+            if (rectangle.TouchRightOf(newRectangle))
+            {
+                position.X = newRectangle.X + rectangle.Width - 40;
+            }
+
+            if (rectangle.TouchBottomOf(newRectangle))
+            {
+                reachedTop = true;
+                speed.Y += 4f;
+            }
+        }
 
         private void MakeAnimations()
         {
@@ -190,5 +229,7 @@ namespace GameProject20223.Character
                 speed.Y = -5;
             }
         }
+
+       
     }
 }
