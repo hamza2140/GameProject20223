@@ -45,7 +45,27 @@ namespace GameProject20223.Classes.Character
         }
         internal abstract void MakeAnimations();
 
-        
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            if (isAlive)
+            {
+                spriteBatch.Draw(enemyTexture, position, animationManager.CurrentAnimation.CurrFrame.srcRectangle,
+                Color.White, 0f, new Vector2(0, 0), scale, se, 0f);
+            }
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            if (isAlive)
+            {
+                MoveX();
+
+                // Rectangle opnemen voor collisions
+                rectangle = new Rectangle((int)position.X + 50, (int)position.Y + height, 32 - 10, 32);
+                // Animatie updaten
+                animationManager.CurrentAnimation.Update(gameTime);
+            }
+        }
         public virtual void MoveX()
         {
             // Variabelen initialiseren
