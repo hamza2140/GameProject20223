@@ -54,7 +54,17 @@ namespace GameProject20223.Classes.Levels
                 enemy.Update(gameTime);
         }
 
-        
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            background.Draw(spriteBatch);
+            map.Draw(spriteBatch);
+
+            foreach (var enemy in enemies)
+                enemy.Draw(spriteBatch);
+
+            foreach (var star in stars)
+                star.Draw(spriteBatch);
+        }
     }
 
 }
