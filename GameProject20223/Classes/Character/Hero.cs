@@ -2,6 +2,7 @@
 using GameProject20223.Classes;
 using GameProject20223.Classes.Character;
 using GameProject20223.Classes.Interfaces;
+using GameProject20223.Classes.Levelsdesign;
 using GameProject20223.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
