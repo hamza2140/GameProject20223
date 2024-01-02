@@ -29,7 +29,25 @@ namespace GameProject20223.Classes.Levels
         internal ContentManager _content;
         internal GraphicsDevice _graphicsDevice;
 
+        public Level(GraphicsDevice graphicsDevice, ContentManager content)
+        {
+            // Initialisatie
+            _content = content;
+            _graphicsDevice = graphicsDevice;
 
+            enemies = new List<Enemy>();
+            stars = new List<Star>();
 
+            // Textures inladen
+            _dragonTexture = _content.Load<Texture2D>("enemy");
+            _zombieTexture = _content.Load<Texture2D>("zombie");
+            _trapTexture = _content.Load<Texture2D>("skull");
+            _backgroundTexture = _content.Load<Texture2D>("background");
+
+            // Level genereren
+            GenerateLevel();
+        }
+        public abstract void GenerateLevel();
     }
+
 }
