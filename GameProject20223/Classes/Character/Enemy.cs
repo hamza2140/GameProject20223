@@ -1,4 +1,5 @@
 ﻿using GameProject20223.Animations;
+using GameProject20223.Character;
 using GameProject20223.Classes.Interfaces;
 using GameProject20223.Interfaces;
 using Microsoft.Xna.Framework;
@@ -39,6 +40,19 @@ namespace GameProject20223.Classes.Character
 
             // Huidige animatie intialiseren.
             animationManager = new AnimationManager();
+        }
+        public void Die()
+        {
+            //Dood animatie..
+
+            // Enemy sterft
+            isAlive = false;
+
+            // Uit scherm
+            rectangle.Y = -500;
+
+            // Hero score gaat omhoog
+            Hero.score += 1;
         }
     }
 }
