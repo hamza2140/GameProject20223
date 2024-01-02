@@ -48,6 +48,13 @@ namespace GameProject20223.Classes.Levels
             GenerateLevel();
         }
         public abstract void GenerateLevel();
+        public void Update(GameTime gameTime)
+        {
+            foreach (var enemy in enemies)
+                enemy.Update(gameTime);
+        }
+
+        
     }
 
 }
