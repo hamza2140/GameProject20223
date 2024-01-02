@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IDrawable = GameProject20223.Classes.Interfaces.IDrawable;
+using IUpdateable = GameProject20223.Interfaces.IUpdateable;
 
 namespace GameProject20223.Classes.Character
 {
@@ -40,6 +42,28 @@ namespace GameProject20223.Classes.Character
 
             // Huidige animatie intialiseren.
             animationManager = new AnimationManager();
+        }
+        internal abstract void MakeAnimations();
+
+        
+        public virtual void MoveX()
+        {
+            // Variabelen initialiseren
+            position.X += speed.X;
+
+            // Enemey mag niet verder dan eindpositie
+            if (position.X >= end)
+            {
+                speed.X *= -1;
+                se = SpriteEffects.FlipHorizontally;
+            }
+
+            // Enemy mag niet verder dan startpositie
+            if (position.X <= start)
+            {
+                speed.X *= -1;
+                se = SpriteEffects.None;
+            }
         }
         public void Die()
         {
