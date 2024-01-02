@@ -24,5 +24,21 @@ namespace GameProject20223.Classes.Character
 
         private int start, end;
         internal int width, height, scale;
+
+        public Enemy(Texture2D texture, int startPos, int endPos, int height)
+        {
+            end = endPos;
+            start = startPos;
+
+            isAlive = true;
+
+            enemyTexture = texture;
+
+            speed = new Vector2(3, 3);
+            position = new Vector2(startPos, (700 - height));
+
+            // Huidige animatie intialiseren.
+            animationManager = new AnimationManager();
+        }
     }
 }
