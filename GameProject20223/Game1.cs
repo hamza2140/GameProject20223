@@ -8,16 +8,18 @@ namespace GameProject20223
 {
     public class Game1 : Game
     {
-        //variablen gegenereert door Monogame
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
-        //variablen van mij voor de gamestate
+        // Game State instellingen
         private GameState CurrentGameState;
         private GameState NextGameState;
+
         public void ChangeState(GameState newState)
         {
             NextGameState = newState;
         }
+
+        // Variabelen declareren
+        private GraphicsDeviceManager _graphics;
+        private SpriteBatch _spriteBatch;
 
         public Game1()
         {
@@ -38,7 +40,7 @@ namespace GameProject20223
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+            CurrentGameState = new MainMenu(this, _graphics.GraphicsDevice, Content);
             // TODO: use this.Content to load your game content here
         }
 
