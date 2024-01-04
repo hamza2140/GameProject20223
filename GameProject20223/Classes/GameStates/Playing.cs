@@ -41,6 +41,15 @@ namespace GameProject20223.Classes.GameStates
 
             currentLevel = level1;
         }
+        public override void Update(GameTime gameTime)
+        {
+            currentLevel.Update(gameTime);
+            hero.Update(gameTime);
+            foreach (CollisionTiles tile in currentLevel.map.CollisionTiles)
+            {
+                hero.Collision(tile.Rectangle, currentLevel.map.Width, currentLevel.map.Height);
+            }
+        }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
