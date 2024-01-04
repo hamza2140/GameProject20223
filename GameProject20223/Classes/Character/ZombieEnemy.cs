@@ -21,12 +21,12 @@ namespace GameProject20223.Classes.Character
             base.scale = 2;
 
             // Animaties ingeven.
-            MakeAnimations();
+            CreateAnimations();
 
             // Huidige animatie intialiseren.
             animationManager.CurrentAnimation = runAnimation;
         }
-        internal override void MakeAnimations()
+        internal override void CreateAnimations()
         {
             // Set all the animation for the hero
             attackAnimation = new Animation();

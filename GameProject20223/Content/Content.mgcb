@@ -25,18 +25,6 @@
 /processorParam:TextureFormat=Color
 /build:background.png
 
-#begin bg4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:bg4.png
-
 #begin enemy.png
 /importer:TextureImporter
 /processor:TextureProcessor

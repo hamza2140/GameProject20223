@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GameProject20223.Classes.Button
 {
-    internal class StartButton : cButton
+    internal class StartButton : MainButton
     {
         public StartButton(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, int X, int Y) : base(game, graphicsDevice, content, X, Y)
         {
@@ -18,7 +18,7 @@ namespace GameProject20223.Classes.Button
 
         internal override void DoBtnFunction()
         {
-            _game.ChangeState(new Playing(_game, _graphicsDevice, _content));
+            _game.ChangeState(new InGame(_game, _graphicsDevice, _content));
         }
     }
 }

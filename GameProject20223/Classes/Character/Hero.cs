@@ -56,7 +56,7 @@ namespace GameProject20223.Character
             hasJumped = true;
 
             // Animaties ingeven.
-            MakeAnimations();
+            CreateAnimations();
 
             // Huidige animatie intialiseren.
             animationManager = new AnimationManager();
@@ -72,7 +72,7 @@ namespace GameProject20223.Character
         public void Update(GameTime gameTime)
         {
             // Juiste animatie plaatsen adhv van inputReader info
-            CheckAnimationToSet(inputReader.ReadMovement(), inputReader.ReadAttack());
+            CheckAnimationConvertToSet(inputReader.ReadMovement(), inputReader.ReadAttack());
 
             // Animatie updaten
             animationManager.CurrentAnimation.Update(gameTime);
@@ -81,12 +81,12 @@ namespace GameProject20223.Character
             Move();
         }
 
-        void CheckAnimationToSet(bool moving, bool attack)
+        void CheckAnimationConvertToSet(bool moving, bool attack)
         {
             // Sprite draaien naar de richting waarheen we bewegen 
-            if (inputReader.movement.HDirection == HDirection.Left)
+            if (inputReader.movement.HDirection == HorizontalDirection.Left)
                 se = SpriteEffects.FlipHorizontally;
-            if (inputReader.movement.HDirection == HDirection.Right)
+            if (inputReader.movement.HDirection == HorizontalDirection.Right)
                 se = SpriteEffects.None;
 
             // Run animatie als de hero beweegd
@@ -204,7 +204,7 @@ namespace GameProject20223.Character
             }
         }
 
-        private void MakeAnimations()
+        private void CreateAnimations()
         {
             // Set all the animation for the hero
             runAnimation = new Animation();
@@ -223,7 +223,7 @@ namespace GameProject20223.Character
             deathAnimation.AddSpriteRow(width, height, 4, 3);
         }
 
-        public void KilledEnemy(bool onTop)
+        public void EnemyDead(bool onTop)
         {
             if (onTop)
             {

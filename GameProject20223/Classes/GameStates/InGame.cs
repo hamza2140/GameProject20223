@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace GameProject20223.Classes.GameStates
 {
-    internal class Playing : GameState
+    internal class InGame : GameState
     {
         // Variabelen initialiseren
         new Game1 _game;
@@ -23,9 +23,9 @@ namespace GameProject20223.Classes.GameStates
 
         private Hero hero;
         private KeyboardReader KBReader;
-        internal Levels.Level level1, level2, currentLevel;
+        internal Levels.MainLevel level1, level2, currentLevel;
 
-        public Playing(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
+        public InGame(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             // Game inladen
             _game = game;
@@ -35,10 +35,10 @@ namespace GameProject20223.Classes.GameStates
             KBReader = new KeyboardReader();
             hero = new Hero(_heroTexture, KBReader);
 
-            Tiles.Content = _content;
+            Blocks.Content = _content;
 
-            level1 = new Level1(graphicsDevice, _content);
-            level2 = new Level2(graphicsDevice, _content);
+            level1 = new LevelOne(graphicsDevice, _content);
+            level2 = new LevelTwo(graphicsDevice, _content);
 
             currentLevel = level1;
         }
@@ -46,7 +46,7 @@ namespace GameProject20223.Classes.GameStates
         {
             currentLevel.Update(gameTime);
             hero.Update(gameTime);
-            foreach (CollisionTiles tile in currentLevel.map.CollisionTiles)
+            foreach (CollisionBlocks tile in currentLevel.map.CollisionTiles)
             {
                 hero.Collision(tile.Rectangle, currentLevel.map.Width, currentLevel.map.Height);
             }
@@ -56,7 +56,7 @@ namespace GameProject20223.Classes.GameStates
                 if (hero.rectangle.TouchTopOf(enemy.rectangle))
                 {
                     enemy.Die();
-                    hero.KilledEnemy(true);
+                    hero.EnemyDead(true);
                 }
 
                 // Als we een enemy de hero raakt -> hero sterft
@@ -73,7 +73,7 @@ namespace GameProject20223.Classes.GameStates
                     else
                     {
                         enemy.Die();
-                        hero.KilledEnemy(false);
+                        hero.EnemyDead(false);
                     }
                 }
 
@@ -89,13 +89,13 @@ namespace GameProject20223.Classes.GameStates
                     }
                     else
                     {
-                        _game.ChangeState(new Playing(_game, _graphicsDevice, _content) { currentLevel = level2 });
+                        _game.ChangeState(new InGame(_game, _graphicsDevice, _content) { currentLevel = level2 });
                     }
 
                     Thread.Sleep(400);
                 }
             }
-            foreach (var star in currentLevel.stars)
+            foreach (var star in currentLevel.ninjaStars)
             {
                 if (hero.rectangle.Intersects(star.rectangle))
                 {

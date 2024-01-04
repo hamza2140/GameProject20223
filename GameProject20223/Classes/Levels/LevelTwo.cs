@@ -11,21 +11,21 @@ using System.Threading.Tasks;
 
 namespace GameProject20223.Classes.Levels
 {
-    class Level2 : Level
+    class LevelTwo : MainLevel
     {
-        public Level2(GraphicsDevice graphicsDevice, ContentManager content) : base(graphicsDevice, content)
+        public LevelTwo(GraphicsDevice graphicsDevice, ContentManager content) : base(graphicsDevice, content)
         {
             // Elementen die nodig zijn in het level inladen
-            stars.Add(new Star(content, 50, 700));
-            stars.Add(new Star(content, 1300, 100));
+            ninjaStars.Add(new NinjaStar(content, 50, 700));
+            ninjaStars.Add(new NinjaStar(content, 1300, 100));
 
-            enemies.Add(new DragonEnemy(_dragonTexture, 670, 800, 60));
+            enemies.Add(new AnimalEnemy(_animalTexture, 670, 800, 60));
             enemies.Add(new ZombieEnemy(_zombieTexture, 300, 500, 25));
             background = new Background(_backgroundTexture);
         }
         public override void GenerateLevel()
         {
-            map = new Map();
+            map = new MainMap();
 
             // 1 = Cobble met mos
             // 2 = Cobble

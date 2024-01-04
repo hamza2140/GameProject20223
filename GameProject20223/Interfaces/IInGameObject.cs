@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GameProject20223.Classes.Interfaces
 {
-    internal interface IGameObject
+    internal interface IInGameObject
     {
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);

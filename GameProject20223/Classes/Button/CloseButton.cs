@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace GameProject20223.Classes.Button
 {
-    internal class CloseButton : cButton
+    internal class CloseButton : MainButton
     {
         public CloseButton(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, int X, int Y) : base(game, graphicsDevice, content, X, Y)
         {

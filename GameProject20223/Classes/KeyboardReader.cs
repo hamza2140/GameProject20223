@@ -28,7 +28,7 @@ namespace GameProject20223.Classes
                 if (this.ReadMovement())
                 {
                     direction.X = -speed;
-                    movement.HDirection = HDirection.Left;
+                    movement.HDirection = HorizontalDirection.Left;
                 }
             }
             if (state.IsKeyDown(Keys.Right))
@@ -36,13 +36,13 @@ namespace GameProject20223.Classes
                 if (this.ReadMovement())
                 {
                     direction.X = speed;
-                    movement.HDirection = HDirection.Right;
+                    movement.HDirection = HorizontalDirection.Right;
                 }
             }
             if (state.IsKeyDown(Keys.Up))
             {
                 Jump = true;
-                movement.VDirection = VDirection.Up;
+                movement.VDirection = VerticalDirection.Up;
             }
             else
             {
@@ -50,7 +50,7 @@ namespace GameProject20223.Classes
             }
             if (state.IsKeyDown(Keys.Down))
             {
-                movement.VDirection = VDirection.Down;
+                movement.VDirection = VerticalDirection.Down;
             }
             return direction;
         }

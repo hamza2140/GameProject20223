@@ -14,7 +14,7 @@ namespace GameProject20223.Classes.GameStates
     internal class GameOver : GameState
     {
         private Texture2D _backgroundTexture;
-        private Background background;
+        private Background _backgroundGame;
 
         public GameOver(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
@@ -22,7 +22,7 @@ namespace GameProject20223.Classes.GameStates
             _backgroundTexture = _content.Load<Texture2D>("gameover");
 
             // Initialiseren
-            background = new Background(_backgroundTexture);
+            _backgroundGame = new Background(_backgroundTexture);
 
             buttons.Add(new MenuButton(game, graphicsDevice, content, 610, 400));
             buttons.Add(new RestartButton(game, graphicsDevice, content, 610, 480));
@@ -31,7 +31,7 @@ namespace GameProject20223.Classes.GameStates
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             // Alle elementen tekenen
-            background.Draw(spriteBatch);
+            _backgroundGame.Draw(spriteBatch);
 
             foreach (var button in buttons)
             {

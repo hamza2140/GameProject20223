@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameProject20223.Interfaces
 {
-    internal interface IDieable
+    internal interface IDead
     {
         void Die();
     }

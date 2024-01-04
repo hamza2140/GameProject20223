@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 namespace GameProject20223.Classes.Levelsdesign
 {
     // Bron: Oyyou. (2013a, januari 16). XNA Tutorial 40 - Creating a Tile Map(1/3). YouTube.https://www.youtube.com/watch?v=PKlHcxFAEk0
-    public class Tiles
+    public class Blocks
     {
         protected Texture2D texture;
-        private Rectangle rectangle, srcRectangle;
+        private Rectangle rectangle, sourceRectangle;
 
         public Rectangle Rectangle
         {
@@ -24,8 +24,8 @@ namespace GameProject20223.Classes.Levelsdesign
 
         public Rectangle SrcRectangle
         {
-            get { return srcRectangle; }
-            set { srcRectangle = value; }
+            get { return sourceRectangle; }
+            set { sourceRectangle = value; }
         }
 
         private static ContentManager content;
@@ -37,13 +37,13 @@ namespace GameProject20223.Classes.Levelsdesign
 
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(texture, rectangle, srcRectangle, Color.White);
+            spritebatch.Draw(texture, rectangle, sourceRectangle, Color.White);
         }
     }
 
-    public class CollisionTiles : Tiles
+    public class CollisionBlocks : Blocks
     {
-        public CollisionTiles(int i, Rectangle newRectangle)
+        public CollisionBlocks(int i, Rectangle newRectangle)
         {
             // Hier tile plaatsen
             texture = Content.Load<Texture2D>("tileset");

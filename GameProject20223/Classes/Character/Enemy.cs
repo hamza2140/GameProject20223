@@ -14,7 +14,7 @@ using IUpdateable = GameProject20223.Interfaces.IUpdateable;
 
 namespace GameProject20223.Classes.Character
 {
-    abstract class Enemy: IDrawable, IUpdateable, IDieable
+    abstract class Enemy: IDrawable, IUpdateable, IDead
     {
         public Rectangle rectangle;
         public bool isAlive { get; private set; }
@@ -43,7 +43,7 @@ namespace GameProject20223.Classes.Character
             // Huidige animatie intialiseren.
             animationManager = new AnimationManager();
         }
-        internal abstract void MakeAnimations();
+        internal abstract void CreateAnimations();
 
         public void Draw(SpriteBatch spriteBatch)
         {

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace GameProject20223.Classes.Levelsdesign
 {
-    public class Map
+    public class MainMap
     {
-        private List<CollisionTiles> collisionTiles = new List<CollisionTiles>();
-        public List<CollisionTiles> CollisionTiles
+        private List<CollisionBlocks> collisionTiles = new List<CollisionBlocks>();
+        public List<CollisionBlocks> CollisionTiles
         {
             get { return collisionTiles; }
         }
@@ -37,7 +37,7 @@ namespace GameProject20223.Classes.Levelsdesign
 
                     if (nr > 0)
                     {
-                        CollisionTiles.Add(new CollisionTiles(nr, new Rectangle(x * size, y * size, size, size)));
+                        CollisionTiles.Add(new CollisionBlocks(nr, new Rectangle(x * size, y * size, size, size)));
                     }
 
                     width = (x + 1) * size;
@@ -48,7 +48,7 @@ namespace GameProject20223.Classes.Levelsdesign
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (CollisionTiles tile in CollisionTiles)
+            foreach (CollisionBlocks tile in CollisionTiles)
             {
                 tile.Draw(spriteBatch);
             }

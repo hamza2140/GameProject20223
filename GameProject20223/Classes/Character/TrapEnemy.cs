@@ -18,11 +18,11 @@ namespace GameProject20223.Classes.Character
             base.height = 32;
             base.scale = 1;
 
-            MakeAnimations();
+            CreateAnimations();
 
             animationManager.CurrentAnimation = staticAnimation;
         }
-        internal override void MakeAnimations()
+        internal override void CreateAnimations()
         {
             staticAnimation = new Animation();
             staticAnimation.AddSpriteRow(width, height, 0, 1);

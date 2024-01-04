@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace GameProject20223.Classes.Character
 {
-    class DragonEnemy : Enemy
+    class AnimalEnemy : Enemy
     {
         Animation runAnimation, attackAnimation, deathAnimation;
 
-        public DragonEnemy(Texture2D texture, int startPos, int endPos, int height) : base(texture, startPos, endPos, height)
+        public AnimalEnemy(Texture2D texture, int startPos, int endPos, int height) : base(texture, startPos, endPos, height)
         {
             // Default waardes ingeven
             base.width = 32;
@@ -20,13 +20,13 @@ namespace GameProject20223.Classes.Character
             base.scale = 4;
 
             // Animaties ingeven.
-            MakeAnimations();
+            CreateAnimations();
 
             // Huidige animatie intialiseren.
             animationManager = new AnimationManager();
             animationManager.CurrentAnimation = runAnimation;
         }
-        internal override void MakeAnimations()
+        internal override void CreateAnimations()
         {
             // Set all the animation for the hero
             deathAnimation = new Animation();

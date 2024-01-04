@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace GameProject20223.Classes.Character
 {
-    public enum VDirection
+    public enum VerticalDirection
     {
         Up, Down
     }
-    public enum HDirection
+    public enum HorizontalDirection
     {
         Right, Left
     }
     public class Movement
     {
-        public HDirection HDirection { get; set; }
-        public VDirection VDirection { get; set; }
+        public HorizontalDirection HDirection { get; set; }
+        public VerticalDirection VDirection { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GameProject20223.Classes.Collectable
 {
-    public class Star
+    public class NinjaStar
     {
         Texture2D startTexture;
         private bool collected;
@@ -21,7 +21,7 @@ namespace GameProject20223.Classes.Collectable
         private int size { get; set; }
 
         public Rectangle rectangle;
-        public Star(ContentManager content, int xPos, int yPos)
+        public NinjaStar(ContentManager content, int xPos, int yPos)
         {
             x = xPos;
             y = yPos;

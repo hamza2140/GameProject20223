@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GameProject20223.Classes.Button
 {
-    internal class MenuButton : cButton
+    internal class MenuButton : MainButton
     {
         public MenuButton(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, int X, int Y) : base(game, graphicsDevice, content, X, Y)
         {

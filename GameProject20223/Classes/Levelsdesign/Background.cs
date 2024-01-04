@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GameProject20223.Classes.Levelsdesign
 {
-    internal class Background : IGameObject
+    internal class Background : IInGameObject
     {
         private Texture2D bgTexture;
 

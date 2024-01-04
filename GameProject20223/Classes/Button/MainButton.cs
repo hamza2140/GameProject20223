@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace GameProject20223.Classes.Button
 {
-    abstract class cButton : IUpdateable
+    abstract class MainButton : IUpdateable
     {
         protected Game1 _game;
         protected GraphicsDevice _graphicsDevice;
@@ -22,7 +22,7 @@ namespace GameProject20223.Classes.Button
 
 
         // Constructor 
-        public cButton(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, int X, int Y)
+        public MainButton(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, int X, int Y)
         {
             _game = game;
             _graphicsDevice = graphicsDevice;

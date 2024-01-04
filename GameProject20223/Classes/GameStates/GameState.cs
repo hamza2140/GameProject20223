@@ -18,7 +18,7 @@ namespace GameProject20223.Classes.GameStates
         protected GraphicsDevice _graphicsDevice;
         protected ContentManager _content;
 
-        internal List<cButton> buttons;
+        internal List<MainButton> buttons;
 
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
         {
@@ -26,7 +26,7 @@ namespace GameProject20223.Classes.GameStates
             _graphicsDevice = graphicsDevice;
             _content = content;
 
-            buttons = new List<cButton>();
+            buttons = new List<MainButton>();
         }
 
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
