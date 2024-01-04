@@ -22,5 +22,15 @@ namespace GameProject20223.Classes.Character
 
             animationManager.CurrentAnimation = staticAnimation;
         }
+        internal override void MakeAnimations()
+        {
+            staticAnimation = new Animation();
+            staticAnimation.AddSpriteRow(width, height, 0, 1);
+        }
+
+        public override void MoveX()
+        {
+            position.X += 0;
+        }
     }
 }
