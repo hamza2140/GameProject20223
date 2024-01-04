@@ -1,5 +1,6 @@
 ﻿using GameProject20223.Classes.Button;
 using GameProject20223.Classes.Levelsdesign;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -35,6 +36,25 @@ namespace GameProject20223.Classes.GameStates
             // Knoppen toevoegen
             buttons.Add(new StartButton(game, graphicsDevice, content, 610, 400));
             buttons.Add(new CloseButton(game, graphicsDevice, content, 610, 480));
+        }
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            // Alle elementen tekenen
+            background.Draw(spriteBatch);
+
+            foreach (var button in buttons)
+            {
+                button.Draw(spriteBatch);
+            }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            // Knoppen updaten
+            foreach (var button in buttons)
+            {
+                button.Update(gameTime);
+            }
         }
     }
 }
