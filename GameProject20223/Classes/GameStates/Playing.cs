@@ -41,6 +41,7 @@ namespace GameProject20223.Classes.GameStates
 
             currentLevel = level1;
         }
+
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             currentLevel.Draw(spriteBatch);
