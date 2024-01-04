@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace GameProject20223.Classes.GameStates
@@ -49,7 +50,52 @@ namespace GameProject20223.Classes.GameStates
             {
                 hero.Collision(tile.Rectangle, currentLevel.map.Width, currentLevel.map.Height);
             }
-        }
+            foreach (var enemy in currentLevel.enemies)
+            {
+                // Hero zal de vijand doden door er langs bovenop te springen.
+                if (hero.rectangle.TouchTopOf(enemy.rectangle))
+                {
+                    enemy.Die();
+                    hero.KilledEnemy(true);
+                }
+
+                // Als we een enemy de hero raakt -> hero sterft
+                if (hero.rectangle.Intersects(enemy.rectangle))
+                {
+                    if (!KBReader.ReadAttack())
+                    {
+                        // Hero sterft 
+                        Hero.score = 0;
+                        counter = 0;
+                        _game.ChangeState(new GameOver(_game, _graphicsDevice, _content));
+                        Thread.Sleep(400);
+                    }
+                    else
+                    {
+                        enemy.Die();
+                        hero.KilledEnemy(false);
+                    }
+                }
+
+                // Als we het level hebben gehaald
+                if (Hero.score == currentLevel.MaxScore)
+                {
+                    counter++;
+                    Hero.score = 0;
+                    if (counter > 1)
+                    {
+                        _game.ChangeState(new WinnerState(_game, _graphicsDevice, _content));
+                        counter = 0;
+                    }
+                    else
+                    {
+                        _game.ChangeState(new Playing(_game, _graphicsDevice, _content) { currentLevel = level2 });
+                    }
+
+                    Thread.Sleep(400);
+                }
+            }
+        }       
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
