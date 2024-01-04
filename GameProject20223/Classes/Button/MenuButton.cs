@@ -15,7 +15,10 @@ namespace GameProject20223.Classes.Button
         {
             _texture = content.Load<Texture2D>("menu");
         }
+        internal override void DoBtnFunction()
+        {
+            _game.ChangeState(new MainMenu(_game, _graphicsDevice, _content));
+        }
 
-        
     }
 }
