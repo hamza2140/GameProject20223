@@ -95,6 +95,13 @@ namespace GameProject20223.Classes.GameStates
                     Thread.Sleep(400);
                 }
             }
+            foreach (var star in currentLevel.stars)
+            {
+                if (hero.rectangle.Intersects(star.rectangle))
+                {
+                    star.Collected();
+                }
+            }
         }       
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
