@@ -13,15 +13,29 @@ namespace GameProject20223.Classes.Levels
 {
     class LevelTwo : MainLevel
     {
+        private Texture2D starTexture;
+        private Texture2D animalTexture;
+        private Texture2D zombieTexture;
+        private Texture2D backgroundTexture;
+
         public LevelTwo(GraphicsDevice graphicsDevice, ContentManager content) : base(graphicsDevice, content)
         {
-            // Elementen die nodig zijn in het level inladen
-            ninjaStars.Add(new NinjaStar(content, 50, 700));
-            ninjaStars.Add(new NinjaStar(content, 1300, 100));
+            // Laad alle benodigde texturen
+            starTexture = content.Load<Texture2D>("star");
+            animalTexture = content.Load<Texture2D>("enemy");
+            zombieTexture = content.Load<Texture2D>("zombie");
+            backgroundTexture = content.Load<Texture2D>("background");
 
-            enemies.Add(new AnimalEnemy(_animalTexture, 670, 800, 60));
-            enemies.Add(new ZombieEnemy(_zombieTexture, 300, 500, 25));
-            background = new Background(_backgroundTexture);
+            // Initialiseer de ninjaStars met de geladen textuur
+            ninjaStars.Add(new NinjaStar(starTexture, 50, 700));
+            ninjaStars.Add(new NinjaStar(starTexture, 1300, 100));
+
+            // Initialiseer de enemies met de respectieve texturen
+            enemies.Add(new AnimalEnemy(animalTexture, 670, 800, 60));
+            enemies.Add(new ZombieEnemy(zombieTexture, 300, 500, 25));
+
+            // Initialiseer de achtergrond
+            background = new Background(backgroundTexture);
         }
         public override void GenerateLevel()
         {

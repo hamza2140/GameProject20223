@@ -12,7 +12,7 @@ namespace GameProject20223.Classes.Collectable
 {
     public class NinjaStar
     {
-        Texture2D startTexture;
+        private Texture2D starTexture;
         private bool collected;
 
         private int x { get; set; }
@@ -21,14 +21,16 @@ namespace GameProject20223.Classes.Collectable
         private int size { get; set; }
 
         public Rectangle rectangle;
-        public NinjaStar(ContentManager content, int xPos, int yPos)
+
+        // Pas de constructor aan om een Texture2D in plaats van een ContentManager te accepteren.
+        public NinjaStar(Texture2D texture, int xPos, int yPos)
         {
+            starTexture = texture;
             x = xPos;
             y = yPos;
 
             size = 50;
 
-            startTexture = content.Load<Texture2D>("star");
             rectangle = new Rectangle(xPos, yPos, size, size);
         }
 
@@ -36,7 +38,7 @@ namespace GameProject20223.Classes.Collectable
         {
             if (!collected)
             {
-                spriteBatch.Draw(startTexture, rectangle, Color.White);
+                spriteBatch.Draw(starTexture, rectangle, Color.White);
             }
         }
 

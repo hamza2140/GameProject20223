@@ -1,6 +1,7 @@
 ﻿using GameProject20223.Classes.Character;
 using GameProject20223.Classes.Collectable;
 using GameProject20223.Classes.Levelsdesign;
+using GameProject20223.Interfaces;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -15,15 +16,25 @@ namespace GameProject20223.Classes.Levels
     {
         public LevelOne(GraphicsDevice graphicsDevice, ContentManager content) : base(graphicsDevice, content)
         {
-            // Elementen die nodig zijn in het level inladen
-            ninjaStars.Add(new NinjaStar(content, 800, 650));
-            ninjaStars.Add(new NinjaStar(content, 400, 400));
-            ninjaStars.Add(new NinjaStar(content, 1300, 100));
+            // ResourceManager singleton instance
+            var resourceManager = ResourceManager.Instance(content);
 
-            enemies.Add(new AnimalEnemy(_animalTexture, 300, 550, 25));
-            enemies.Add(new ZombieEnemy(_zombieTexture, 700, 1250, 25));
-            enemies.Add(new TrapEnemy(_trapTexture, 650, 650, 620));
-            background = new Background(_backgroundTexture);
+            // Adding NinjaStars
+            ninjaStars.Add(new NinjaStar(resourceManager.LoadTexture("star"), 800, 650));
+            ninjaStars.Add(new NinjaStar(resourceManager.LoadTexture("star"), 400, 400));
+            ninjaStars.Add(new NinjaStar(resourceManager.LoadTexture("star"), 1300, 100));
+
+            // Using factories to create enemies
+            IEnemyFactory animalFactory = new AnimalEnemyFactory();
+            IEnemyFactory zombieFactory = new ZombieEnemyFactory();
+            IEnemyFactory trapFactory = new TrapEnemyFactory();
+
+            enemies.Add(animalFactory.CreateEnemy(resourceManager.LoadTexture("enemy"), 300, 550, 25));
+            enemies.Add(zombieFactory.CreateEnemy(resourceManager.LoadTexture("zombie"), 700, 1250, 25));
+            enemies.Add(trapFactory.CreateEnemy(resourceManager.LoadTexture("skull"), 400, 900, 25));
+
+            // Setting background
+            background = new Background(resourceManager.LoadTexture("background"));
         }
         public override void GenerateLevel()
         {

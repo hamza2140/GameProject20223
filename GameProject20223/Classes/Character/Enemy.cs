@@ -14,7 +14,7 @@ using IUpdateable = GameProject20223.Interfaces.IUpdateable;
 
 namespace GameProject20223.Classes.Character
 {
-    abstract class Enemy: IDrawable, IUpdateable, IDead
+    public abstract class Enemy: IDrawable, IUpdateable, IDead
     {
         public Rectangle rectangle;
         public bool isAlive { get; private set; }
